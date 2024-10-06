@@ -10,6 +10,7 @@ Welcome to the eTrees web application! This project is designed to educate users
 - **JavaScript**: To add interactivity to the web app.
 - **jQuery**: A JavaScript library that simplifies DOM manipulation and event handling.
 - **QR Code Package**: A Node.js package used to generate QR codes for the trees.
+- **MySQL**: A relational database management system used for storing tree information and user data.
 
 ## Project Features
 
@@ -28,13 +29,12 @@ Welcome to the eTrees web application! This project is designed to educate users
 
 ## Images
 ![E-Trees Screenshot 1](/sample_images/landing.png)
-# admin page
-![E-Trees Screenshot 1](/sample_images/admin.png)
-# user page
-![E-Trees Screenshot 1](/sample_images/user.png)
-
-![E-Trees Screenshot 1](/sample_images/qrcode.png)
-
+# Admin Page
+![E-Trees Admin Page](/sample_images/admin.png)
+# User Page
+![E-Trees User Page](/sample_images/user.png)
+# QR Code Example
+![E-Trees QR Code Example](/sample_images/qrcode.png)
 
 ## Purpose
 
