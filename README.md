@@ -1,4 +1,4 @@
-# eTrees Web App
+# E-Trees Web App
 
 Welcome to the eTrees web application! This project is designed to educate users by providing valuable information about trees. By utilizing technology, we generate unique QR codes that are attached to specific trees. When scanned, these QR codes provide detailed information about the corresponding trees.
 
@@ -28,6 +28,11 @@ Welcome to the eTrees web application! This project is designed to educate users
 
 ## Images
 ![E-Trees Screenshot 1](/sample_images/landing.png)
+![E-Trees Screenshot 1](/sample_images/admin.png)
+![E-Trees Screenshot 1](/sample_images/user.png)
+
+![E-Trees Screenshot 1](/sample_images/qrcode.png)
+
 
 ## Purpose
 
