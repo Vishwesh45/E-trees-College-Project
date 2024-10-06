@@ -28,7 +28,9 @@ Welcome to the eTrees web application! This project is designed to educate users
 
 ## Images
 ![E-Trees Screenshot 1](/sample_images/landing.png)
+# admin page
 ![E-Trees Screenshot 1](/sample_images/admin.png)
+# user page
 ![E-Trees Screenshot 1](/sample_images/user.png)
 
 ![E-Trees Screenshot 1](/sample_images/qrcode.png)
