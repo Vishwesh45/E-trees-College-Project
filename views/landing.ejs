@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TreeINFO - Educate and Love Trees</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            padding-top: 60px;
+        }
+        .hero-section {
+            background: url('/images/tree5.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+        }
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.301);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .navbar {
+            background-image: linear-gradient(to right, #32CD32, #34C759, #2E865F);
+            background-color: #2E865F;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 8px;
+            border-radius: 0.5rem;
+        }
+        .navbar-brand img {
+            width: 80px;
+            height: auto;
+        }
+        .navbar-nav .nav-link.admin-login {
+            font-weight: bold;
+            color: #ffdd00;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            padding: 5px 10px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .navbar-nav .nav-link.admin-login:hover {
+            color: #ffffff;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .content-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .card {
+            margin: 20px 0;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .login-card {
+            width: 18rem;
+            margin: auto;
+            margin-left: 25rem;
+        }
+        .modal-header {
+            background-color: #343a40;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <a class="navbar-brand" href="/">
+            <img src="/images/OIP (1).jpeg" alt="TreeInfo Logo">
+        </a>
+        <h3 class="ml-3">TreeINFO.com</h3>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link admin-login" href="#" data-toggle="modal" data-target="#adminLoginModal">
+                        <i class="fas fa-user-shield"></i> Admin Login
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div class="hero-content container">
+            <h1>Welcome to TreeINFO.com</h1>
+            <p>Our mission is to educate people about trees, inspire a love for them, and provide easy access to information through QR codes. Join us in making the world greener!</p>
+            <p><strong>Our goal:</strong> To spread knowledge about trees and promote the use of QR codes to share this information, fostering a deeper appreciation for nature.</p>
+        </div>
+    </div>
+
+    <div class="container content-section">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card login-card">
+                    <div class="card-body">
+                        <h5 class="card-title">User Login</h5>
+                        <p class="card-text">Access comprehensive information about various tree species and learn how to care for them.</p>
+                        <a href="#" data-toggle="modal" data-target="#userLoginModal" class="btn btn-primary"><i class="fas fa-user"></i> Login as User</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-5">
+            <h2>Our Purpose:</h2>
+            <p>At TreeINFO.com, we believe that educating people about trees is crucial for a sustainable future. By providing detailed information and encouraging the use of QR codes, we aim to foster a love for trees and nature in our communities. Here’s how you can help:</p>
+            <ul class="list-unstyled">
+                <li><i class="fas fa-leaf"></i> <strong>Learn about different tree species:</strong> Explore our database to discover the unique characteristics and benefits of various trees.</li>
+                <li><i class="fas fa-qrcode"></i> <strong>Download and share QR codes:</strong> Get QR codes for trees in your area, attach them to the trees, and help spread knowledge to others.</li>
+                <li><i class="fas fa-heart"></i> <strong>Encourage others:</strong> Inspire your friends and family to join you in caring for and protecting our green spaces.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div class="modal fade" id="adminLoginModal" tabindex="-1" role="dialog" aria-labelledby="adminLoginModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="adminLoginModalLabel">Admin Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/admin/login" method="POST">
+                        <div class="form-group">
+                            <label for="adminUsername">Username</label>
+                            <input type="text" class="form-control" id="adminUsername" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="adminPassword">Password</label>
+                            <input type="password" class="form-control" id="adminPassword" name="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Login Modal -->
+    <div class="modal fade" id="userLoginModal" tabindex="-1" role="dialog" aria-labelledby="userLoginModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="userLoginModalLabel">User Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/login" method="POST">
+                        <div class="form-group">
+                            <label for="userLoginEmail">Email address</label>
+                            <input type="email" class="form-control" id="userLoginEmail" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userLoginPassword">Password</label>
+                            <input type="password" class="form-control" id="userLoginPassword" name="password" required>
+                        </div>
+                        <p class="mt-3">New to our website? <a href="#" id="openSignupModal">Register here</a></p>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Signup Modal -->
+    <div class="modal fade"  id="userSignupModal" tabindex="-1" role="dialog" aria-labelledby="userSignupModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="userSignupModalLabel">User Registration</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/register" method="POST">
+                        <div class="form-group">
+                            <label for="signupName">Full Name</label>
+                            <input type="text" class="form-control" id="signupName" name="full_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupEmail">Email address</label>
+                            <input type="email" class="form-control" id="signupEmail" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupPassword">Password</label>
+                            <input type="password" class="form-control" id="signupPassword" name="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Open signup modal when the "Register here" link is clicked
+            document.getElementById('openSignupModal').addEventListener('click', function(e) {
+                e.preventDefault();
+                $('#userLoginModal').modal('hide');  // Hide the login modal
+                $('#userSignupModal').modal('show'); // Show the signup modal
+            });
+    
+            // Handle the cancellation of the signup process
+            $('#userSignupModal').on('hidden.bs.modal', function() {
+                if (window.location.href.indexOf('#login') !== -1) {
+                    $('#userLoginModal').modal('show'); // Show the login modal after the signup modal is hidden
+                }
+            });
+    
+            // Check if there's an alert message in the URL query parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const alertMessage = urlParams.get('alert');
+    
+            if (alertMessage) {
+                alert(decodeURIComponent(alertMessage)); // Display the alert message
+    
+                // Remove the alert message from the URL without reloading the page
+                const url = window.location.href.split('?')[0];
+                window.history.replaceState(null, null, url);
+            }
+        });
+    </script>
+    
+</body>
+</html>
+

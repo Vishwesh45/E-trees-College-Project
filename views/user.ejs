@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree Information</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            padding-top: 50px;
+        }
+        .hero-section {
+            background: url('/images/your-background-image-url.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: -20px;
+        }
+        .navbar {
+            background-image: linear-gradient(to right, #32CD32, #34C759, #2E865F);
+            background-color: #2E865F;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 8px;
+            border-radius: 0.5rem;
+        }
+        .navbar-brand img {
+            width: 80px;
+            height: auto;
+        }
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+            color: #333;
+        }
+        .hero-image {
+            width: 40%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .hero-description {
+            width: 50%;
+            padding: 20px;
+            margin-top: 10px;
+        }
+        .card {
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+        .quote-section {
+            font-style: italic;
+            color: #2E865F;
+            border-left-width: 4px;
+            border-left-style: solid;
+            border-left-color: #2E865F;
+            margin: 30px auto;
+            font-size: 1.5em;
+            text-align: center;
+            display: block;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .card-text {
+            white-space: pre-wrap; /* Preserves whitespace and line breaks */
+        }
+        .subheading {
+            font-size: 1.5em;
+            color: #2E865F;
+            margin: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href="/user">
+            <img src="/images/OIP (1).jpeg" alt="TreeInfo Logo">
+        </a>
+        <h3 class="ml-3">TreeINFO.com</h3>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/user">Home</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="hero-section">
+        <div class="container">
+            <div class="row hero-content">
+                <div class="col-md-6">
+                    <img src="/images/OIP.jpeg" alt="Tree Information Header" class="hero-image mb-4">
+                </div>
+                <div class="col-md-6 hero-description">
+                    <h1>Welcome to TreeINFO.com</h1>
+                    <p>Discover and manage trees in your area. Our platform provides comprehensive information and tools to help you keep track of various tree species, their needs, and their benefits. Whether you are a tree enthusiast or a professional arborist, we offer the resources you need to make informed decisions and ensure the health and well-being of the trees you care about.</p>
+                    <button id="logout-btn" class="btn btn-primary">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="quote-section">
+        <p>"The best time to plant a tree was 20 years ago. The second best time is now." - Chinese Proverb</p>
+    </div>
+
+    <div class="subheading">
+        <i class="fas fa-download"></i> Download QR Codes for Trees in Your Surroundings and Attach Them to the Respective Trees <i class="fas fa-tree"></i>
+    </div>
+    
+    <div class="container mt-5">
+        <div class="search-bar">
+            <input type="text" id="searchInput" class="form-control" placeholder="Search trees by name...">
+        </div>
+
+        <div class="toast" id="toast">
+            <div class="toast-body">
+                This is a toast message.
+            </div>
+        </div>
+
+        <h2 class="mb-4">Tree Information</h2>
+        <div class="row" id="treeContainer">
+            <% trees.forEach(tree => { %>
+                <div class="col-md-4 mb-4">
+                    <div class="card" data-id="<%= tree.id %>">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= tree.name %></h5>
+                            <p class="card-text">Description of <%= tree.name %>.</p>
+                            <button class="btn btn-primary" onclick="showQRCode('<%= tree.qr_code %>', '<%= tree.id %>')">
+                                <i class="fas fa-qrcode"></i> View QR Code
+                            </button>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-info btn-sm" data-id="<%= tree.id %>">
+                                <i class="fas fa-chevron-down"></i> Details
+                            </button>
+                            <div id="details-<%= tree.id %>" class="collapse mt-2">
+                                <p id="details-text-<%= tree.id %>">Details loading...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+
+        <div class="cta-section">
+            <h3>Help Us Spread the Word!</h3>
+            <p>Download the QR codes for the trees and attach them to the respective trees in your surroundings. This will help others easily access detailed information about these trees and foster a greater appreciation for the greenery around us.</p>
+        </div>
+    </div>
+
+    <!-- QR Code Modal -->
+    <div class="modal fade" id="qrModal" tabindex="-1" role="dialog" aria-labelledby="qrModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="qrModalLabel">QR Code</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="qrCodeImage" src="" alt="QR Code" class="img-fluid">
+                    <h5 class="mt-3">Scan it!</h5>
+                    <button class="btn btn-primary mt-3" onclick="downloadQRCode()">Download QR Code</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <script>
+        function showQRCode(qrCode, treeId) {
+            $('#qrCodeImage').attr('src', qrCode);
+            $('#qrModal').modal('show');
+        }
+    
+        function downloadQRCode() {
+            const qrCodeImage = document.getElementById('qrCodeImage');
+            const downloadLink = document.createElement('a');
+            downloadLink.href = qrCodeImage.src;
+            downloadLink.download = 'qr_code.png';
+            downloadLink.click();
+        }
+    
+        $(document).ready(function() {
+            $('#searchInput').on('keyup', function() {
+                var value = $(this).val().toLowerCase();
+                $('#treeContainer .card').each(function() {
+                    var name = $(this).find('.card-title').text().toLowerCase();
+                    $(this).toggle(name.indexOf(value) > -1);
+                });
+            });
+    
+            $('.btn-info').on('click', function() {
+                var treeId = $(this).data('id');
+                var detailsDiv = $('#details-' + treeId);
+                if (detailsDiv.hasClass('show')) {
+                    detailsDiv.collapse('hide');
+                } else {
+                    $.ajax({
+                        url: '/tree-details/' + treeId,
+                        method: 'GET',
+                        success: function(data) {
+                            $('#details-text-' + treeId).html(`
+                                <p><strong>Name:</strong> ${data.name}</p>
+                                <p><strong>Scientific Name:</strong> ${data.scientific_name}</p>
+                                <p><strong>Family:</strong> ${data.family || 'Not available'}</p>
+                                <p><strong>Species:</strong> ${data.species || 'Not available'}</p>
+                                <p><strong>Description:</strong> ${data.description.replace(/\n/g, '<br>')}</p>
+                            `);
+                            detailsDiv.collapse('show');
+                        },
+                        error: function() {
+                            $('#details-text-' + treeId).text('Error fetching details.');
+                        }
+                    });
+                }
+            });
+        });
+
+        document.getElementById('logout-btn').addEventListener('click', function() {
+    localStorage.clear();
+    window.location.href = '/';
+});
+    </script>
+    
+</body>
+</html>

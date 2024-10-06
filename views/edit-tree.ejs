@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Tree</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Edit Tree</h1>
+        <form action="/edit-tree/<%= tree.id %>" method="POST">
+            <div class="form-group">
+                <label for="name">Tree Name</label>
+                <input type="text" class="form-control" id="name" name="name" value="<%= tree.name %>" required>
+            </div>
+            <div class="form-group">
+                <label for="scientific_name">Scientific Name</label>
+                <input type="text" class="form-control" id="scientific_name" name="scientific_name" value="<%= tree.scientific_name %>" required>
+            </div>
+            <div class="form-group">
+                <label for="family">Family</label>
+                <input type="text" class="form-control" id="family" name="family" value="<%= tree.family %>">
+            </div>
+            <div class="form-group">
+                <label for="species">Species</label>
+                <input type="text" class="form-control" id="species" name="species" value="<%= tree.species %>">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3"><%= tree.description %></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Tree</button>
+        </form>
+    </div>
+</body>
+</html>
